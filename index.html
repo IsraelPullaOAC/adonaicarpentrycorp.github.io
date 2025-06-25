@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Adonai Carpentry Corporation – Luxury Custom Construction & Renovation in the Hamptons" />
   <title>Adonai Carpentry Corporation | Hamptons</title>
-  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -17,7 +17,7 @@
             muted: '#eeeeee'
           },
           fontFamily: {
-            sans: ['Raleway', 'sans-serif']
+            sans: ['Libre Baskerville', 'serif']
           },
           animation: {
             fade: 'fadeIn 1.5s ease-in forwards'
@@ -35,14 +35,29 @@
   <style>
     body {
       background-color: #ffffff;
-      font-family: 'Raleway', sans-serif;
+      font-family: 'Libre Baskerville', serif;
     }
     .animate-fade {
       animation: fadeIn 1.5s ease-in forwards;
     }
+    .scroll-fade {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 1s ease-out, transform 1s ease-out;
+    }
+    .scroll-fade.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
   </style>
 </head>
 <body class="text-brand">
+  <!-- Header Bar -->
+  <div class="w-full bg-brand text-white px-4 py-2 flex flex-col sm:flex-row justify-between items-center text-sm">
+    <div class="font-semibold">Call us: (631) 767-4640</div>
+    <div class="italic">Email: pullarolando@hotmail.com</div>
+  </div>
+
   <!-- Hero Section -->
   <section class="h-screen bg-[url('https://ik.warmlyyours.com/img/housing-industry-recovering-80351f.jpeg?tr=w-915:dpr-auto:f-jpeg')] bg-cover bg-center flex items-center justify-center">
     <div class="bg-black bg-opacity-60 p-10 rounded-lg text-center animate-fade">
@@ -53,26 +68,26 @@
   </section>
 
   <!-- About Section -->
-  <section id="about" class="py-16 px-6 max-w-5xl mx-auto animate-fade">
+  <section id="about" class="py-16 px-6 max-w-5xl mx-auto scroll-fade">
     <h2 class="text-3xl font-bold text-center mb-6">Who We Are</h2>
     <p class="text-lg text-center text-gray-700 leading-relaxed">Adonai Carpentry Corporation is a premier construction and remodeling firm based in the Hamptons. We specialize in high-end custom homes, exquisite renovations, and tailored craftsmanship. With over 20 years in business and decades of combined experience, our team brings precision, artistry, and care to every build — from foundation to finish.</p>
     <p class="text-center text-md text-gray-600 mt-4">Proudly serving Westhampton, Southampton, Water Mill, and Remsenburg.</p>
   </section>
 
   <!-- Services Section -->
-  <section id="services" class="bg-muted py-16 px-6 animate-fade">
+  <section id="services" class="bg-muted py-16 px-6 scroll-fade">
     <div class="max-w-6xl mx-auto">
       <h2 class="text-3xl font-bold text-center mb-10">Our Expertise</h2>
       <div class="grid md:grid-cols-3 gap-10">
-        <div class="bg-white p-6 rounded shadow-md hover:shadow-lg transition animate-fade">
+        <div class="bg-white p-6 rounded shadow-md hover:shadow-lg transition">
           <h3 class="text-xl font-semibold mb-2">Custom Homes</h3>
           <p>We design and build luxury homes that reflect your vision and lifestyle, blending functionality with timeless design.</p>
         </div>
-        <div class="bg-white p-6 rounded shadow-md hover:shadow-lg transition animate-fade">
+        <div class="bg-white p-6 rounded shadow-md hover:shadow-lg transition">
           <h3 class="text-xl font-semibold mb-2">Renovations</h3>
           <p>Whether it's your kitchen, bathroom, or entire home, we bring new life to your space with top-tier materials and craftsmanship.</p>
         </div>
-        <div class="bg-white p-6 rounded shadow-md hover:shadow-lg transition animate-fade">
+        <div class="bg-white p-6 rounded shadow-md hover:shadow-lg transition">
           <h3 class="text-xl font-semibold mb-2">Decks & Outdoor Living</h3>
           <p>Extend your home outdoors with premium decks, pergolas, and patio spaces built for entertaining and relaxing.</p>
         </div>
@@ -81,7 +96,7 @@
   </section>
 
   <!-- Contact Section -->
-  <section id="contact" class="py-16 px-6 max-w-5xl mx-auto animate-fade">
+  <section id="contact" class="py-16 px-6 max-w-5xl mx-auto scroll-fade">
     <h2 class="text-3xl font-bold text-center mb-6">Let's Build Something Great</h2>
     <p class="text-center text-lg mb-8">Reach out today to start planning your next home transformation.</p>
     <div class="text-center">
@@ -90,8 +105,24 @@
   </section>
 
   <!-- Footer -->
-  <footer class="bg-brand text-white text-center py-6 animate-fade">
+  <footer class="bg-brand text-white text-center py-6 scroll-fade">
     <p>&copy; 2025 Adonai Carpentry Corporation. All rights reserved. | Serving the Hamptons: Westhampton, Southampton, Water Mill, Remsenburg</p>
   </footer>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, {
+      threshold: 0.1
+    });
+
+    document.querySelectorAll('.scroll-fade').forEach(section => {
+      observer.observe(section);
+    });
+  </script>
 </body>
 </html>
